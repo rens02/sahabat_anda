@@ -48,10 +48,11 @@
                 </div>
               </div>
             <div class="form-group">
-                <a href="<?= site_url(''); ?>" class="btn btn-danger">Kembali</a>
+                <a href="<?= site_url(''); ?>" class="btn btn-secondary">Kembali</a>
 
               <button class="btn btn-primary" type="submit" name = "submit" id="submitButton" >Submit</button>
-                <button class="btn btn-primary" type="submit" name = "delete" id="deleteButton" >Delete</button>
+              <a href="<?= site_url('welcome/delete/'.$barang->kode); ?>" class="btn btn-danger" id="deleteLink">Delete</a>
+
 
             </div>
             </div>
@@ -61,6 +62,13 @@
   </body>
 
 <script type="text/javascript">
+
+document.getElementById("deleteLink").addEventListener("click", function(event) {
+    var confirmation = confirm('Apakah ingin dihapus data ini?');
+    if (!confirmation) {
+        event.preventDefault(); // Menghentikan eksekusi link jika pengguna memilih Cancel
+    }
+});
 
   function thumbnail () {
     var preview = document.querySelector('#image');

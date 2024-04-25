@@ -16,43 +16,41 @@ class Welcome extends CI_Controller {
 		$this->load->view('table', $data);
 	}
 
-	// public function create()
-	// {
-	// 	$this->load->helper('form');
-	// 	$this->load->library('form_validation');
+	public function create() 
+{
+    $this->load->helper('form');
+    $this->load->library('form_validation');
 
-	// 	$this->form_validation->set_rules('name', 'Name', 'required|max_length[30]');
-	// 	$this->form_validation->set_rules('description', 'Description', 'required');
+    $this->form_validation->set_rules('nama', 'Nama', 'required');
+    $this->form_validation->set_rules('harga', 'Harga', 'required');
+    $this->form_validation->set_rules('stock', 'Stock', 'required');
+	$this->form_validation->set_rules('jenis', 'Jenis', 'required');
+	$this->form_validation->set_rules('perusahaan', 'Perusahaan', 'required');
 
-	// 	if ($this->form_validation->run() == FALSE) {
-			
-	// 		$this->load->view('header');
-	// 		$this->load->view('create');
-	// 		$this->load->view('footer');
-	// 	}else{
-	// 		$kode = uniqid('item', TRUE);
+    if ($this->form_validation->run() == FALSE) {
+        $this->load->view('create');
+    } else {
+		$nama = $this->input->post('nama');
+        $config['upload_path'] = './asset/images';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_size'] = '1000000';
+        $config['file_ext_tolower'] = TRUE;
+        $config['file_name'] = str_replace('.','_',$nama);
 
-	// 		$config['upload_path'] = './asset/uploads/post';
-	// 		$config['allowed_types'] = 'jpg|png|jpeg';
-	// 		$config['max_size'] = '1000000';
-	// 		$config['file_ext_tolower'] = TRUE;
-	// 		$config['filename'] = str_replace('.','_',$kode);
+        $this->load->library('upload', $config);
 
-	// 		$this->load->library('upload', $config);
+		if  (!$this->upload->do_upload('image')){
+			$this->session->set_flashdata('error', $this->upload->display_errors());
+			$this->load->view('create');
+		}else{
+			$filename = $this->upload->data('file_name');
+			$this->model->create($filename);
+			redirect();
+		}
+    }
+}
 
-	// 		if  (!$this->upload->do_upload('image')){
-	// 			$this->session->set_flashdata('error', $this->upload->display_errors());
-	// 			redirect('welcome/index');
-	// 		}else{
-	// 			$filename = $this->upload->data('file_name');
-	// 			$this->model->create($kode, $filename);
-	// 			redirect();
-	// 		}
-	// 	}
-
-	// }
-
-	public function update($kode) // ubah menjadi update
+	public function update($kode)
 {
     $this->load->helper('form');
     $this->load->library('form_validation');
@@ -69,12 +67,11 @@ class Welcome extends CI_Controller {
     } else {
         if (!empty($_FILES['image']['name'])) { 
             $post = $this->model->read($kode);
-            $config['upload_path'] = './asset/images'; // Ubah 'asset' menjadi 'assets' sesuai dengan struktur folder Anda
+            $config['upload_path'] = './asset/images'; 
             $config['allowed_types'] = 'jpg|png|jpeg';
             $config['max_size'] = '1000000';
             $config['file_ext_tolower'] = TRUE;
-            $config['overwrite'] = TRUE; // tambahkan overwrite untuk menimpa file yang ada
-            // Ubah $gambar menjadi 'gambar' karena $gambar tidak didefinisikan dalam konteks ini
+            $config['overwrite'] = TRUE; 
             $config['file_name'] = $post->gambar;
 
             $this->load->library('upload', $config);
@@ -95,32 +92,11 @@ class Welcome extends CI_Controller {
     }
 }
 
+	public function delete($kode = FALSE){
+		$post = $this->model->read($kode);
+		$this->model->delete($kode);
 
-	// public function delete($kode = FALSE){
-	// 	$post = $this->model->read($kode);
-	// 	$this->model->delete($kode);
-
-	// 	unlink('./asset/uploads/post/'. $post->filename);
-	// 	redirect();
-	// }
-
-	// public function deleteAll($kode = FALSE){
-	// 	$this->model->deleteAll();
-
-	// 	$directory = './asset/uploads/post/';
-
-	// 	// Mendapatkan daftar semua file dalam direktori
-	// 	$files = glob($directory . '*');
-
-	// 	// Menghapus setiap file
-	// 	foreach ($files as $file) {
-	// 		if (is_file($file)) {
-	// 			unlink($file);
-	// 		}
-	// 	}
-
-	// 	// Redirect atau tindakan lainnya setelah menghapus semua file
-	// 	redirect();
-	// }
-
+		unlink('./asset/images/'. $post->gambar);
+		redirect();
+	}
 }

@@ -1,7 +1,15 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<h6><?= validation_errors(); ?></h6>
-<h6><?= $this->session->flashdata('error'); ?></h6>
+<h6><?php echo validation_errors(); ?></h6>
+<h6><?php echo $this->session->flashdata('error'); ?></h6>
+
+<head>
+    <meta charset="utf-8">
+    <title>Upload Image File</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href=<?= base_url('asset/css/styleform.css'); ?>>
+  </head>
+<body>
 
 <div class="container">
     <div class="badan-bawah">
@@ -10,11 +18,16 @@
         <p>Silahkan isi data dibawah.</p>
         <form class="tengah" action="<?php echo site_url('welcome/create/'); ?>" method="post" autocomplete="off" enctype="multipart/form-data">
             <div class="col-md-12">
-                <input class="form-control" type="text" name="name" id = "name" placeholder="Nama Barang" required value=""> <br>
+                <input class="form-control" type="text" name="nama" id = "nama" placeholder="Nama Barang" required value=""> <br>
               </div>
               <div class="col-md-12">
-                <input class="form-control" type="text" name="jenis" id = "jenis" placeholder="Jenis Barang" required value=""> <br>
-
+                <select class="form-control" name="jenis" id="jenis">
+                  <option value="">- Pilih Jenis Barang -</option>
+                  <option value="Makanan">Makanan</option>
+                  <option value="Minuman">Minuman</option>
+                  <option value="Obat">Obat</option>
+                  <option value="Perlengkapan">Perlengkapan</option>
+                  </select><br>
               </div>
               <div class="col-md-12">
                 <input class="form-control" type="text" name="harga" id = "harga" placeholder="Harga Barang" required value=""> <br>
@@ -25,14 +38,14 @@
 
               </div>
               <div class="col-md-12">
-                <input class="form-control" type="text" name="produsen" id = "produsen" placeholder="Produsen" required value=""> <br>
+                <input class="form-control" type="text" name="perusahaan" id = "perusahaan" placeholder="Perusahaan" required value=""> <br>
 
               </div><br>
               <div class="col-md-12">
               <input class="form-control" type="file" name="image" id = "image" accept=".jpg, .jpeg, .png" value=""> <br> <br>
             </div>
             <div class="form-group">
-              <button class='btn btn-outline-danger' onclick="window.location.href='<?= site_url('welcome/index/'); ?>'"> Kembali</button>
+              <button class='btn btn-outline-danger' onclick="window.location.href='<?= site_url(''); ?>'"> Kembali</button>
               <button class="btn btn-primary" type="submit" name = "submit" id="submitButton" disabled >Submit</button>
 
               <script type="text/javascript">

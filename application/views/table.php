@@ -17,9 +17,6 @@ echo $this->session->flashdata('error');
         <link rel="stylesheet" href="<?= base_url('asset/DataTables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css'); ?>">
         <link rel="stylesheet" href="<?= base_url('asset/DataTables/Buttons-1.5.6/css/buttons.bootstrap4.min.css'); ?>">
 
-
-
-
         <title>DATA INVENTORY TOKO SAHABAT ANDA</title>
         <style>
            

@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5ubuntu0.5
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Dec 30, 2022 at 12:55 PM
--- Server version: 5.7.40-0ubuntu0.18.04.1
--- PHP Version: 7.2.24-0ubuntu0.18.04.15
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 25 Apr 2024 pada 17.33
+-- Versi server: 10.4.25-MariaDB
+-- Versi PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `toko`
+-- Database: `sahabat_anda`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sahabat_anda`
+-- Struktur dari tabel `sahabat_anda`
 --
 
 CREATE TABLE `sahabat_anda` (
@@ -37,12 +38,10 @@ CREATE TABLE `sahabat_anda` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `sahabat_anda`
+-- Dumping data untuk tabel `sahabat_anda`
 --
 
 INSERT INTO `sahabat_anda` (`kode`, `nama`, `jenis`, `harga`, `stock`, `perusahaan`, `gambar`) VALUES
-(112, 'Mie Goreng Rendang', 'Makanan', 3500, 77, 'Indofood', 'mirendang.jpg'),
-(113, 'Mie Goreng pedas', 'Makanan', 3500, 77, 'Indofood', 'mipedas.jpg'),
 (114, 'Mie Goreng jumbo', 'Makanan', 3500, 85, 'Indofood', 'mijumbo.jpg'),
 (121, 'Mie kuah ayam bawang', 'Makanan', 3500, 41, 'Indofood', 'mikabw.jpg'),
 (122, 'Mie kuah Soto', 'Makanan', 3500, 21, 'Indofood', 'miksoto.jpg'),
@@ -79,10 +78,21 @@ INSERT INTO `sahabat_anda` (`kode`, `nama`, `jenis`, `harga`, `stock`, `perusaha
 --
 
 --
--- Indexes for table `sahabat_anda`
+-- Indeks untuk tabel `sahabat_anda`
 --
 ALTER TABLE `sahabat_anda`
   ADD PRIMARY KEY (`kode`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
+--
+
+--
+-- AUTO_INCREMENT untuk tabel `sahabat_anda`
+--
+ALTER TABLE `sahabat_anda`
+  MODIFY `kode` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=410;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

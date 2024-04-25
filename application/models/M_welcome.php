@@ -3,17 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_welcome extends CI_Model {
 
-    // public function create($id, $filename){
-    //     $data = [
-    //         'id' => $id, 
-    //         'name' => $this->input->post('name', TRUE),//liat dari views create
-    //         'description' => $this->input->post('description', TRUE),
-    //         'filename'=> $filename
-    //     ];
-
-    //     $this->db->insert('post', $data);
-    // }
-
     public function read($kode = FALSE){
         if ( $kode === FALSE ) {
             // return all posts 
@@ -24,6 +13,18 @@ class M_welcome extends CI_Model {
         }
     }
 
+    public function create($filename){
+        $data = [
+            'nama' => $this->input->post('nama', TRUE),
+            'harga' => $this->input->post('harga', TRUE),
+            'stock' => $this->input->post('stock', TRUE),
+            'jenis' => $this->input->post('jenis', TRUE),
+            'perusahaan' => $this->input->post('perusahaan', TRUE),
+            'gambar' => $filename
+        ];
+
+        $this->db->insert('sahabat_anda', $data);
+    }
     public function update($kode){
         $data = [
             'nama' => $this->input->post('nama', TRUE),
@@ -37,10 +38,10 @@ class M_welcome extends CI_Model {
         $this->db->update('sahabat_anda', $data);
     }
 
-    // public function delete($id){
-    //     $this->db->where('id', $id);
-    //     $this->db->delete('post');
-    // }
+    public function delete($kode){
+        $this->db->where('kode', $kode);
+        $this->db->delete('sahabat_anda');
+    }
 
     // public function deleteAll(){
     //     $this->db->empty_table('post');

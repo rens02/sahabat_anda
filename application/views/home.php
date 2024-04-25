@@ -14,7 +14,7 @@ echo $this->session->flashdata('error');
             <img src="<?= site_url("asset/uploads/post/".$data['filename']);?>" class="circle">
             <p class="title"><?= $data['name']; ?></p>
             <small><?= $data['description']?></small>
-            <a href="<?= site_url("welcome/index/".$data['id']); ?>" class="secondary_content">
+            <a c class="secondary_content">
                 <i class="material-icons" style="margin-left: 50px">visibility</i>
             </a>
         </li>

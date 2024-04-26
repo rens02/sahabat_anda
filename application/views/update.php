@@ -1,7 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<h6><?php echo validation_errors(); ?></h6>
-<h6><?php echo $this->session->flashdata('error'); ?></h6>
 
 <head>
     <meta charset="utf-8">
@@ -16,6 +14,8 @@
       <br>
         <h3>Edit Barang </h3>
         <p>Silahkan isi data dibawah.</p>
+        <h6><?php echo validation_errors(); ?></h6>
+        <h6><?php echo $this->session->flashdata('error'); ?></h6>
         <form class="tengah" action="<?php echo site_url('welcome/update/'.$barang->kode); ?>" method="post" autocomplete="off" enctype="multipart/form-data">
             <div class="col-md-12">
                 <input class="form-control" type="text" name="nama" id = "nama" placeholder="Nama Barang"  value="<?php echo $barang->nama; ?>"> <br>

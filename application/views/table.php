@@ -70,7 +70,7 @@ echo $this->session->flashdata('error');
                                             <img height='50' width='50' src='" . base_url('asset/images/' . $lupa) . "'>
                                         </td>
                                         <td>
-                                            <button class='btn-success' onclick=\"location.href='" . site_url("welcome/update/" . $row['kode']) . "';\">Edit</button>
+                                            <button class='btn-success' onclick=\"location.href='" . site_url("welcome/index/" . $row['kode']) . "';\">Lihat</button>
                                         </td>
                                     </tr>";
                             }

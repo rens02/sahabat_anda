@@ -48,7 +48,7 @@
                 </div>
               </div>
             <div class="form-group">
-                <a href="<?= site_url(''); ?>" class="btn btn-secondary">Kembali</a>
+                <a href="<?= site_url('welcome/index/'.$barang->kode); ?>" class="btn btn-secondary">Kembali</a>
 
               <button class="btn btn-primary" type="submit" name = "submit" id="submitButton" >Submit</button>
               <a href="<?= site_url('welcome/delete/'.$barang->kode); ?>" class="btn btn-danger" id="deleteLink">Delete</a>

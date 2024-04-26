@@ -12,8 +12,13 @@ class Welcome extends CI_Controller {
 
 	public function index($kode = FALSE)
 	{
-		$data['hasil'] = $this->model->read();
-		$this->load->view('table', $data);
+        if ($kode === FALSE){
+            $data['hasil'] = $this->model->read();
+		    $this->load->view('table', $data);
+        }else{
+            $data['barang'] = $this->model->read($kode);
+		    $this->load->view('view', $data);
+        }
 	}
 
 	public function create() 

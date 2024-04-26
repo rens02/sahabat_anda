@@ -16,7 +16,7 @@
       <br>
         <h3>Penambahan Barang Baru</h3>
         <p>Silahkan isi data dibawah.</p>
-        <form class="tengah" action="<?php echo site_url('welcome/create/'); ?>" method="post" autocomplete="off" enctype="multipart/form-data">
+        <form class="tengah" action="<?php echo site_url('controller/create/'); ?>" method="post" autocomplete="off" enctype="multipart/form-data">
             <div class="col-md-12">
                 <input class="form-control" type="text" name="nama" id = "nama" placeholder="Nama Barang" required value=""> <br>
               </div>

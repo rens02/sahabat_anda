@@ -27,13 +27,10 @@ echo $this->session->flashdata('error');
     <body style="background-color: #152733;">
         <br>
         <div class="container">
-
-
             <div class="card">
-
                 <div class="card-body">
                     <h1 style="text-align: center; color: green; ">TOKO SAHABAT ANDA</h1>
-                    <button style="float: right;" class='btn btn-outline-success' onclick="window.location.href='<?= site_url('welcome/create/') ?>';">Tambah Inventory</button>
+                    <button style="float: right;" class='btn btn-outline-success' onclick="window.location.href='<?= site_url('controller/create/') ?>';">Tambah Inventory</button>
 
                     <h1 class="display-4">Inventory</h1>
                     <br>
@@ -47,34 +44,35 @@ echo $this->session->flashdata('error');
                                 <th>Stock Barang</th>
                                 <th>Produsen</th>
                                 <th>Foto Barang</th>
-                                <th>Edit</th>
+                                <th>Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
 
+                        <?php foreach ($hasil as $row): ?>
                         <?php
-                            foreach ($hasil as $row) {
-                                $harga = $row['harga'];
-                                $kode = $row['kode'];
-                                $rupiah = "Rp " . number_format($harga, 2, ',', '.');
-                                $lupa = $row['gambar'];
+                        $rupiah = "Rp " . number_format($row['harga'], 2, ',', '.');
+                        $gambar = $row['gambar'];
+                        ?>
+                        <tr>
+                            <td><?= $row['kode'] ?></td>
+                            <td><?= $row['nama'] ?></td>
+                            <td><?= $row['jenis'] ?></td>
+                            <td><?= $rupiah ?></td>
+                            <td><?= $row['stock'] ?></td>
+                            <td><?= $row['perusahaan'] ?></td>
+                            <td>
+                                <img height="50" width="50" src="<?= base_url('asset/images/' . $gambar) ?>">
+                            </td>
+                            <td>
+                            <div class="btn-group" role="group">
+                            <button class="btn btn-primary" onclick="location.href='<?= site_url('controller/index/'. $row['kode']) ?>'">Lihat</button>
+                            <button type="button" class="btn btn-danger" onclick="confirmAndRedirect('<?= site_url('controller/delete/'.$row['kode']) ?>')">Hapus</button>
 
-                                echo "<tr>
-                                        <td>" . $kode . "</td>
-                                        <td>" . $row['nama'] . "</td>
-                                        <td>" . $row['jenis'] . "</td>
-                                        <td>" . $rupiah . "</td>
-                                        <td>" . $row['stock'] . "</td>
-                                        <td>" . $row['perusahaan'] . "</td>
-                                        <td>
-                                            <img height='50' width='50' src='" . base_url('asset/images/' . $lupa) . "'>
-                                        </td>
-                                        <td>
-                                            <button class='btn-success' onclick=\"location.href='" . site_url("welcome/index/" . $row['kode']) . "';\">Lihat</button>
-                                        </td>
-                                    </tr>";
-                            }
-                            ?>
+                            </div>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
 
 
                         </tbody>
@@ -106,6 +104,7 @@ echo $this->session->flashdata('error');
         <script src="asset/DataTables/Buttons-1.5.6/js/buttons.colVis.min.js"></script>
 
         <script>
+
             $(document).ready(function() {
                 var table = $('#table').DataTable({
                     buttons: ['copy', 'csv', 'print', 'excel', 'pdf', 'colvis'],
@@ -119,6 +118,12 @@ echo $this->session->flashdata('error');
                 table.buttons().container()
                     .appendTo('#table_wrapper .col-md-5:eq(0)');
             });
+
+            function confirmAndRedirect(url) {
+            if (confirm('Apakah ingin dihapus data ini?')) {
+                window.location.href = url;
+            }
+    }
         </script>
     </body>
 

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_welcome extends CI_Model {
+class M_model extends CI_Model {
 
     public function read($kode = FALSE){
         if ( $kode === FALSE ) {

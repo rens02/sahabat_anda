@@ -12,7 +12,7 @@
     <div class="badan-bawah">
         <br>
         <h3>Informasi Barang </h3>  
-    <form class="tengah" action="<?php echo site_url('welcome/update/'.$barang->kode); ?>" method="post" autocomplete="off" enctype="multipart/form-data">
+    <form class="tengah" action="<?php echo site_url('controller/update/'.$barang->kode); ?>" method="post" autocomplete="off" enctype="multipart/form-data">
             <div class="col-md-12">
                 <input class="form-control" readonly="readonly" type="text" name="nama" id = "nama" placeholder="Nama Barang"  value="<?php echo $barang->nama; ?>"> <br>
               </div>
@@ -33,7 +33,7 @@
               </div>
             <div class="form-group">
             <a href="<?= site_url(''); ?>" class="btn btn-secondary">Kembali</a>
-            <a href="<?= site_url('welcome/update/'.$barang->kode); ?>" class="btn btn-primary" id="update">Update</a>
+            <a href="<?= site_url('controller/update/'.$barang->kode); ?>" class="btn btn-primary" id="update">Update</a>
         </div>
     </div>
 </div>

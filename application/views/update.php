@@ -16,7 +16,7 @@
         <p>Silahkan isi data dibawah.</p>
         <h6><?php echo validation_errors(); ?></h6>
         <h6><?php echo $this->session->flashdata('error'); ?></h6>
-        <form class="tengah" action="<?php echo site_url('welcome/update/'.$barang->kode); ?>" method="post" autocomplete="off" enctype="multipart/form-data">
+        <form class="tengah" action="<?php echo site_url('controller/update/'.$barang->kode); ?>" method="post" autocomplete="off" enctype="multipart/form-data">
             <div class="col-md-12">
                 <input class="form-control" type="text" name="nama" id = "nama" placeholder="Nama Barang"  value="<?php echo $barang->nama; ?>"> <br>
               </div>
@@ -48,7 +48,7 @@
                 </div>
               </div>
             <div class="form-group">
-                <a href="<?= site_url('welcome/index/'.$barang->kode); ?>" class="btn btn-secondary">Kembali</a>
+                <a href="<?= site_url('controller/index/'.$barang->kode); ?>" class="btn btn-secondary">Kembali</a>
               <button class="btn btn-primary" type="submit" name = "submit" id="submitButton" >Submit</button>
             </div>
             </div>
